@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +30,20 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieUser(@PathVariable int id) {
+    public Resource<User> retrieUser(@PathVariable int id) {
         User user = service.findOne(id);
         
         if(user == null) 
             throw new UserNotFoundException("id-" + id);
         
-        return user;
+        Resource<User> resource = new Resource<User>(user);
+        ControllerLinkBuilder linkToAllUsers = linkTo(methodOn(this.getClass()).retrieAllUsers());
+        resource.add(linkToAllUsers.withRel("all-users"));
+        
+        ControllerLinkBuilder linkToDeleteUser = linkTo(methodOn(this.getClass()).deleteUser(id));
+        resource.add(linkToDeleteUser.withRel("delete-user"));
+        
+        return resource;
     }
 
     @PostMapping("/users")
@@ -49,10 +59,12 @@ public class UserController {
     }
     
     @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable int id) {
+    public Resource<User> deleteUser(@PathVariable int id) {
         User user = service.deleteById(id);
         
         if(user == null) 
             throw new UserNotFoundException("id-" + id);
+        
+        return new Resource<User>(user);
     }
 }
