@@ -1,4 +1,4 @@
-package com.codekooking.rest.microservices.limitsservice;
+package com.codekooking.microservices.limitsservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

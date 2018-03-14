@@ -1,4 +1,4 @@
-package com.codekooking.rest.microservices.limitsservice;
+package com.codekooking.microservices.limitsservice;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

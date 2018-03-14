@@ -1,4 +1,4 @@
-package com.codekooking.rest.microservices.limitsservice.bean;
+package com.codekooking.microservices.limitsservice.bean;
 
 public class LimitConfiguration {
     private int maximum;
