@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients("com.codekooking.microservices.currencyconversionservice")
 public class CurrencyConversionServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CurrencyConversionServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CurrencyConversionServiceApplication.class, args);
+    }
 }
