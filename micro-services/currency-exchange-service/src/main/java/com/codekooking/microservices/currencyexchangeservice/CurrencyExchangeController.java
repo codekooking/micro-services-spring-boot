@@ -9,18 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codekooking.microservices.currencyexchangeservice.bean.ExchangeValue;
+import com.codekooking.microservices.currencyexchangeservice.bean.ExchangeValueRepository;
 
 @RestController
 public class CurrencyExchangeController {
-    
+
     @Autowired
     private Environment environment;
+    
+    @Autowired
+    private ExchangeValueRepository repository;
 
     @GetMapping("/currency-exchange-from/{from}/to/{to}")
     public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
-        ExchangeValue exchangeValue = new ExchangeValue(1000L, from, to, BigDecimal.valueOf(22766.50));
+
+        ExchangeValue exchangeValue = repository.findByFromAndTo(from, to);
+
         exchangeValue.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
+
         return exchangeValue;
-        
+
     }
 }
