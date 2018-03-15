@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.codekooking.microservices.currencyconversionservice.bean.CurrencyConversionBean;
-
 @RestController
 public class CurrencyConversionController {
     
@@ -29,7 +27,7 @@ public class CurrencyConversionController {
         uriVariables.put("to", to);
         
         ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
-                "http://localhost:8000/currency-exchange-from/{from}/to/{to}", 
+                "http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
                 CurrencyConversionBean.class, 
                 uriVariables);
         

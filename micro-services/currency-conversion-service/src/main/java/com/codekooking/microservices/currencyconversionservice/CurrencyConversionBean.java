@@ -1,4 +1,4 @@
-package com.codekooking.microservices.currencyconversionservice.bean;
+package com.codekooking.microservices.currencyconversionservice;
 
 import java.math.BigDecimal;
 
