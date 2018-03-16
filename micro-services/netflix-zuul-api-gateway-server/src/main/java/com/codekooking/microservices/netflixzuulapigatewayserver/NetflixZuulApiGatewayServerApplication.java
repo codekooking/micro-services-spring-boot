@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableDiscoveryClient
 public class NetflixZuulApiGatewayServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(NetflixZuulApiGatewayServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(NetflixZuulApiGatewayServerApplication.class, args);
+    }
 }
